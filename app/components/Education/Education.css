@@ -1,0 +1,247 @@
+.card1 {
+  background: #243137;
+  position: relative;
+  display: grid;
+  place-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+#logo-main,
+#logo-second {
+  height: 100%;
+}
+
+#logo-main {
+  fill: #3b82f6;
+}
+
+#logo-second {
+  padding-bottom: 10px;
+  fill: none;
+  stroke: #3b82f6;
+  stroke-width: 1px;
+}
+
+.border {
+  position: absolute;
+  inset: 0px;
+  border: 2px solid #3b82f6;
+  opacity: 0;
+  transform: rotate(10deg);
+  transition: all 0.5s ease-in-out;
+}
+
+.bottom-text {
+  position: absolute;
+  left: 50%;
+
+  bottom: 0px;
+  transform: translateX(-50%);
+
+  text-transform: uppercase;
+  padding: 0px 5px 0px 8px;
+  color: #3b82f6;
+  background: #243137;
+  opacity: 0;
+  letter-spacing: 7px;
+  transition: all 0.5s ease-in-out;
+}
+
+.content1 {
+  transition: all 0.5s ease-in-out;
+}
+
+.content1 .logo {
+  height: 50px;
+  position: relative;
+  width: 40px;
+  overflow: hidden;
+
+  transition: all 1s ease-in-out;
+}
+
+.content1 .logo .logo1 {
+  height: 33px;
+  position: absolute;
+  left: 0;
+}
+
+.content1 .logo .logo2 {
+  height: 33px;
+  font-size: 40px;
+  position: absolute;
+  left: 33px;
+}
+
+.content1 .logo .trail {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  opacity: 0;
+}
+
+.content1 .logo-bottom-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 15px;
+  color: #3b82f6;
+  padding-left: 10px;
+  opacity: 0;
+  letter-spacing: none;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+.card1:hover {
+  border-radius: 0;
+  transform: scale(1.1);
+}
+
+.card1:hover .logo {
+  width: 400px;
+
+  animation: opacity 1s ease-in-out;
+}
+
+.card1:hover .border {
+  inset: 15px;
+  opacity: 1;
+  transform: rotate(0);
+}
+
+.card1:hover .bottom-text {
+  margin-top: 10px;
+  opacity: 1;
+
+  transform: translateX(-50%);
+}
+
+.card1:hover .content1 .logo-bottom-text {
+  opacity: 1;
+}
+
+.card1:hover .trail {
+  animation: trail 1s ease-in-out;
+}
+
+@keyframes opacity {
+  0% {
+    border-right: 1px solid transparent;
+  }
+
+  10% {
+    border-right: 1px solid #3b82f6;
+  }
+
+  80% {
+    border-right: 1px solid #3b82f6;
+  }
+
+  100% {
+    border-right: 1px solid transparent;
+  }
+}
+
+@keyframes trail {
+  0% {
+    background: linear-gradient(
+      90deg,
+      rgba(189, 159, 103, 0) 90%,
+      #3b82f6 100%
+    );
+    opacity: 0;
+  }
+
+  30% {
+    background: linear-gradient(
+      90deg,
+      rgba(189, 159, 103, 0) 70%,
+      #3b82f6 100%
+    );
+    opacity: 1;
+  }
+
+  70% {
+    background: linear-gradient(
+      90deg,
+      rgba(189, 159, 103, 0) 70%,
+      #3b82f6 100%
+    );
+    opacity: 1;
+  }
+
+  95% {
+    background: linear-gradient(
+      90deg,
+      rgba(189, 159, 103, 0) 90%,
+      #3b82f6 100%
+    );
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card1:hover .border {
+    inset: 8px;
+    opacity: 1;
+    transform: rotate(0);
+  }
+  .card1:hover .logo {
+    width: 300px;
+    animation: opacity 1s ease-in-out;
+  }
+  .content1 .logo .logo1 {
+    height: 23px;
+    position: absolute;
+    text-align: center;
+    left: 0;
+  }
+  .card1:hover .bottom-text {
+    margin-top: 1px;
+    opacity: 1;
+
+    transform: translateX(-50%);
+  }
+  .content1 .logo-bottom-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 6px;
+    color: #3b82f6;
+    padding-left: 10px;
+    opacity: 0;
+    letter-spacing: none;
+    transition: all 0.5s ease-in-out 0.5s;
+  }
+  .content1 {
+    margin-top: 15px;
+    transition: all 0.5s ease-in-out;
+  }
+  .content1 .logo {
+    height: 50px;
+    position: relative;
+    width: 45px;
+    overflow: hidden;
+
+    transition: all 1s ease-in-out;
+  }
+  .bottom-text {
+    position: absolute;
+    left: 50%;
+
+    bottom: 0px;
+    transform: translateX(-50%);
+
+    text-transform: uppercase;
+    padding: 0px 5px 0px 8px;
+    color: #3b82f6;
+    background: #243137;
+    opacity: 0;
+    letter-spacing: 4px;
+    transition: all 0.5s ease-in-out;
+  }
+}

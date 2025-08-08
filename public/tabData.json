@@ -1,0 +1,29 @@
+{
+  "tabs": [
+    {
+      "id": 1,
+      "label": "Frontend",
+      "images": ["/html-5.webp" ,"/css-3.webp","/js.webp","/react.png","/next.png", "/tailwind.png", "/bootstrap.png"]
+    },
+    {
+      "id": 2,
+      "label": "Backend",
+      "images": ["nestjs.webp","/Asp.png","/typescript.webp","/php.webp"]
+    },
+    {
+      "id": 3,
+      "label": "Database",
+      "images": ["/mysql.webp","/postgre.png","/oracle.png","/sqlite.jpeg"]
+    },
+    {
+      "id": 4,
+      "label": "CMS",
+      "images": ["/wordpress.png", "/Shopify.png"]
+    },
+    {
+      "id": 5,
+      "label": "Tools",
+      "images": ["/visual.png","/comunity.jpeg","/github.png","/postman.png","/intellj.jpeg"]
+    }
+  ]
+}

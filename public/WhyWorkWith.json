@@ -1,0 +1,22 @@
+{
+  "whyworkwith": [
+    {
+      "id": 1,
+      "title": "Title 1 of 2",
+      "description": "Description 1 of Title 1 of Title 1 of Title 1 of Title 1 of Title 1 of Title 1 of",
+      "imageUrl": "home"
+    },
+    {
+      "id": 2,
+      "title": "Title 2",
+      "description": "Description 2",
+      "imageUrl": "image-url-2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Title 3",
+      "description": "Description 3",
+      "imageUrl": "image-url-3.jpg"
+    }
+  ]
+}
