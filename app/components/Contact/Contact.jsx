@@ -79,9 +79,7 @@ const Contact = () => {
         const serviceID = process.env.NEXT_PUBLIC_Service_ID;
         const templateID = process.env.NEXT_PUBLIC_Template_ID;
         const publicKey = process.env.NEXT_PUBLIC_Public_Key;
-        console.log(serviceID);
-        console.log(templateID);
-        console.log(publicKey);
+
         const response = await emailjs.sendForm(
           serviceID,
           templateID,
