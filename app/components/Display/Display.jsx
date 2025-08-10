@@ -1,324 +1,246 @@
 "use client";
+import Swal from "sweetalert2";
+
 import { motion } from "framer-motion";
-import Works from "../Works/Works";
 import Image from "next/image";
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { FcDownload } from "react-icons/fc";
 
 const imgVariants = {
-  initial: {
-    opacity: 0,
-  },
+  initial: { opacity: 0 },
   animate: {
     opacity: 1,
+    transition: { duration: 4, staggerChildren: 0.1 },
+  },
+};
 
-    transition: {
-      duration: 4,
-      staggerChildren: 0.1,
-    },
-  },
-};
-const textVariants = {
-  initial: {
-    y: -100,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
 const textVariants1 = {
-  initial: {
-    x: -200,
-    opacity: 0,
-  },
+  initial: { x: -200, opacity: 0 },
   animate: {
     x: 0,
     opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
-const textVariants2 = {
-  initial: {
-    x: 200,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
-const sliderVariants = {
-  initial: {
-    y: 0,
-  },
-  animate: {
-    y: "4%",
-    transition: {
-      repeat: Infinity,
-      repeatType: "mirror",
-      duration: 2,
-    },
-  },
-};
-const sliderVariants1 = {
-  initial: {
-    y: 0,
-  },
-  animate: {
-    y: "-4%",
-    transition: {
-      repeat: Infinity,
-      repeatType: "mirror",
-      duration: 2,
-    },
+    transition: { duration: 1, staggerChildren: 0.1 },
   },
 };
 
-const Display = () => {
+const textVariants2 = {
+  initial: { x: 200, opacity: 0 },
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 1, staggerChildren: 0.1 },
+  },
+};
+
+const Display = ({ file, downloadName }) => {
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const strings = useMemo(
-    () => ["  Youtuber", "  Front-End-Developer", "  Frelancer"],
+    () => ["Youtuber", "Front-End Developer", "Freelancer"],
     []
   );
   const [typedText, setTypedText] = useState("");
 
   useEffect(() => {
+    let timer;
+    if (isDownloading) {
+      timer = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(timer);
+            setIsDownloading(false);
+            setIsComplete(true);
+            return 100;
+          }
+          return prev + 1;
+        });
+      }, 20); // Adjust speed here
+    }
+
+    return () => clearInterval(timer);
+  }, [isDownloading]);
+
+  const handleDownloadClick = () => {
+    setIsDownloading(true);
+    setProgress(0);
+    setIsComplete(false);
+  };
+
+  useEffect(() => {
     const intervalId = setInterval(() => {
       setTypedText(strings[textIndex].substring(0, typedText.length + 1));
     }, 100);
-
     return () => clearInterval(intervalId);
   }, [textIndex, typedText, strings]);
-
+  useEffect(() => {
+    if (isComplete) {
+      Swal.fire({
+        toast: true,
+        position: "bottom-start", // bottom-left corner
+        icon: "success",
+        title: "Download Complete!",
+        showConfirmButton: false,
+        timer: 2500,
+        timerProgressBar: true,
+        customClass: {
+          popup: "text-xs px-3 py-2", // smaller text, smaller padding
+        },
+      });
+    }
+  }, [isComplete]);
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setTextIndex((textIndex + 1) % strings.length);
       setTypedText("");
     }, 3500);
-
     return () => clearTimeout(timeoutId);
   }, [textIndex, strings]);
 
-  const projectSectionRef = useRef(null);
-
-  const scrollToProjects = () => {
-    if (projectSectionRef.current) {
-      projectSectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
   return (
     <section
-      className="w-full min-h-[calc(100vh-800px)]  flex justify-between bg-[#041e42] sm:min-h-[calc(100vh-300px)] md:min-h-[calc(100vh-400px)] xl:min-h-[calc(100vh-80px)] 2xl:min-h-[calc(100vh-700px)] bg-cover bg-center items-center"
+      className="w-full min-h-[85vh] flex flex-col md:flex-row justify-between items-center px-6 md:px-20 bg-[#041e42] text-white"
       id="home"
-      style={{
-        // Gradient from top to bottom
-        background:
-          "radial-gradient(circle at center top, #041e42 1%, #050816 50%)",
-      }}
     >
+      {/* Left Text Content */}
       <motion.div
-        className=" w-full mt-10 hidden md:block "
-        variants={sliderVariants}
+        className="flex flex-col justify-center max-w-xl"
+        variants={textVariants1}
         initial="initial"
-        whileInView="animate"
+        animate="animate"
       >
-        <Image
-          src="/upwork.png" // Adjust the path based on your project structure
-          alt="about"
-          className="w-16 h-16 rounded-full ml-3 opacity-50    animate-glow-border"
-          width={16} // Set your desired width
-          height={16} // Set your desired height
-        />
+        <motion.h3
+          className="text-lg md:text-3xl flex items-center gap-2"
+          variants={textVariants1}
+        >
+          <span className="text-white">Hello</span>
+          <span className="text-blue-500 text-6xl">.</span>
+        </motion.h3>
 
-        <div className="animate-glow-border w-16 h-16 opacity-50  rounded-full ml-auto mr-5 mt-10 ">
-          <Image
-            src="/Facebook.png" // Adjust the path based on your project structure
-            alt="about"
-            className="  w-20 h-16 top-5 "
-            width={16} // Set your desired width
-            height={16} // Set your desired height
-          />
-        </div>
-        <Image
-          src="/github.png" // Adjust the path based on your project structure
-          alt="about"
-          className="w-16 h-16 rounded-full mt-10 ml-3 opacity-50   animate-glow-border"
-          width={24} // Set your desired width
-          height={24} // Set your desired height
-        />
-        <div className="animate-glow-border w-16 h-16 rounded-full opacity-50  ml-auto mr-5 mt-10 ">
-          <Image
-            src="/bootstrap.png" // Adjust the path based on your project structure
-            alt="about"
-            className="  w-20 h-20 top-5 "
-            width={16} // Set your desired width
-            height={16} // Set your desired height
-          />
-        </div>
-      </motion.div>
-      <div className="item-center w-full justify-center">
-        <div className="flex justify-center flex-col items-center mt-10 ">
-          <motion.div
-            className="relative  rounded-full md:h-40 md:w-40 w-20 h-20 mt-4 md:mt-0"
-            variants={imgVariants}
-            initial="initial"
-            whileInView="animate"
-          >
-            <Image
-              src="/fahad.png" // Adjust the path based on your project structure
-              alt="about"
-              className="w-full h-full rounded-full shadow-md"
-              width={100} // Set your desired width
-              height={100} // Set your desired height
-            />
-            <svg className="absolute inset-0 w-full h-full">
-              {/* Inner circle for the image border */}
-              <circle
-                cx="50%"
-                cy="50%"
-                r="48%"
-                className="stroke-current stroke-2 text-blue-500 rounded-full shadow-blue-500 animate-glow-border"
-                fill="none"
-              />
-              {/* Outer circle for additional glow */}
-              <circle
-                cx="50%"
-                cy="50%"
-                r="55%"
-                className="stroke-current stroke-2 text-blue-500 rounded-full shadow-blue-500 animate-glow-border"
-                fill="none"
-              />
-            </svg>
-          </motion.div>
-        </div>
-        <div className="flex flex-col w-full mb-16  items-center justify-center">
-          <motion.div>
-            <div class="flex  w-full items-center justify-center ">
-              <h1 class="relative top-0 w-fit h-auto  justify-center flex bg-gradient-to-r items-center from-blue-500 via-teal-500 to-pink-500 bg-clip-text text-2xl mt-4 md:mt-0 md:text-5xl font-bold text-transparent text-center select-auto">
-                Hi, I'm {typedText}
-              </h1>
-            </div>
-          </motion.div>
+        <motion.h1
+          className="text-3xl md:text-5xl font-medium mt-2"
+          variants={textVariants1}
+        >
+          I&apos;m <span className="font-bold">{typedText}</span>
+        </motion.h1>
 
-          <motion.div
-            variants={textVariants1}
-            initial="initial"
-            whileInView="animate"
-            className="duration-400  mt-3 text-white w-[300px] sm:w-[400px] md:w-[500px] lg:w-[550px] xl:w-[750px] 2xl:w-[850px] text-[8px] sm:text-[10px] md:text-[13px] lg:text-[16px] xl:text-[20px] 2xl:text-[26px] text-center"
-          >
-            I love to Develop user interfaces and web applications with latest
-            technologies. Transforming ideas into reality through code.
-          </motion.div>
+        <motion.p
+          className="text-gray-300 mt-6 text-sm md:text-base leading-relaxed"
+          variants={textVariants2}
+        >
+          I love to develop user interfaces and web applications using the
+          latest technologies. Transforming ideas into reality through code.
+        </motion.p>
 
-          <motion.div
-            className="flex gap-2 text-white mt-4"
-            variants={textVariants2}
-            initial="initial"
-            whileInView="animate"
-          >
-            <a
-              href="#contact"
-              className="bg-[#3DB0E1] text-sm md:text-xl hover:bg-[#2881a7] px-5 py-1"
+        {/* Buttons */}
+        <motion.div
+          className="flex gap-1 mt-4 items-center"
+          variants={textVariants2}
+          initial="initial"
+          animate="animate"
+        >
+          {/* Download Button Container */}
+          <div className="w-[130px] flex flex-col items-center">
+            <button
+              className={`border-2 border-[#3DB0E1] hover:bg-[#3DB0E1] text-white  animate-glow-border flex items-center justify-center gap-2 px-4 py-0.5  ${
+                isDownloading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              onClick={handleDownloadClick}
+              disabled={isDownloading}
+              type="button"
             >
-              HIRE ME
-            </a>
-            <a
-              href="#projects"
-              className="relative px-5 py-1 border-2 border-transparent hover:animate-glow-border"
-            >
-              <svg className="absolute inset-0 w-full h-full">
-                <rect
-                  x="1"
-                  y="1"
-                  width="calc(100% - 2px)"
-                  height="calc(100% - 2px)"
-                  className="stroke-current  stroke-2 hover:stroke-0  animate-glow-border-line text-[#3DB0E1] "
-                  fill="none"
-                  strokeDasharray="100%"
+              {!isDownloading && <FcDownload className="mt-1" size={14} />}
+              {isDownloading ? (
+                <div className="flex flex-row items-center gap-2">
+                  <Image
+                    src="/download.gif"
+                    alt="Downloading"
+                    width={14}
+                    height={14}
+                    style={{ marginRight: 0 }}
+                  />
+                  <span className="text-sm flex flex-row">{progress}%</span>
+                </div>
+              ) : (
+                "RESUME"
+              )}
+            </button>
+
+            {/* Progress Bar */}
+            {isDownloading && (
+              <div className="w-full bg-gray-300 rounded overflow-hidden h-2 mt-1">
+                <div
+                  style={{ width: `${progress}%` }}
+                  className="h-2 bg-[#16a085] transition-all"
                 />
-              </svg>
-              <span className="relative z-10">MY WORK</span>
-            </a>
-          </motion.div>
-        </div>
-      </div>
-      <motion.div
-        className=" w-full mt-2 hidden md:block "
-        variants={sliderVariants1}
-        initial="initial"
-        whileInView="animate"
-      >
-        <Image
-          src="/react.png" // Adjust the path based on your project structure
-          alt="about"
-          className="w-16 h-16 rounded-full opacity-50 ml-2   animate-glow-border"
-          width={16} // Set your desired width
-          height={16} // Set your desired height
-        />
+              </div>
+            )}
+          </div>
 
-        <div className="animate-glow-border w-16 h-16 opacity-50  rounded-full ml-auto mr-5 mt-10 ">
+          {/* Hire Me Button */}
+          <a
+            href="#contact"
+            className=" text-white text-sm md:text-md bg-[#3DB0E1] px-4 py-1.5  transition flex items-center justify-center whitespace-nowrap"
+          >
+            HIRE ME
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Right Image with Arrows */}
+      <motion.div
+        className="relative mt-10 md:mt-0 flex items-center"
+        variants={imgVariants}
+        initial="initial"
+        animate="animate"
+      >
+        {/* Left Arrow */}
+        <span
+          className="text-transparent text-[100px] font-extrabold mb-48 select-none"
+          style={{
+            WebkitTextStroke: "1px #12A4F5",
+            textShadow: "0 0 20px #12A4F5",
+          }}
+        >
+          {"<"}
+        </span>
+
+        {/* Image with Circular Border */}
+        <div className="relative">
+          <div
+            className="absolute top-1/2 -translate-y-1/2 left-3 w-[350px] h-[350px] rounded-full border-[18px] border-[#12A4F5]"
+            style={{
+              boxShadow: `
+                0 0 40px rgba(18, 164, 245, 0.35),
+                0 0 80px rgba(18, 164, 245, 0.25),
+                inset 0 0 25px rgba(18, 164, 245, 0.3),
+                inset 0 0 50px rgba(18, 164, 245, 0.2)
+              `,
+            }}
+          />
           <Image
-            src="/tailwind.png" // Adjust the path based on your project structure
-            alt="about"
-            className="  w-20 h-16 top-5  "
-            width={16} // Set your desired width
-            height={16} // Set your desired height
+            src="/fahadkhan.png"
+            alt="Profile"
+            width={550}
+            height={550}
+            className="rounded-lg relative z-10 object-cover mt-10"
           />
         </div>
-        <Image
-          src="/nestjs.webp" // Adjust the path based on your project structure
-          alt="about"
-          className="w-16 h-16 rounded-full mt-10 opacity-50 ml-2    animate-glow-border"
-          width={24} // Set your desired width
-          height={24} // Set your desired height
-        />
-        <div className="animate-glow-border w-16 h-16 opacity-50  rounded-full ml-auto mr-5 mt-10 ">
-          <Image
-            src="/Asp.png" // Adjust the path based on your project structure
-            alt="about"
-            className="  w-20 h-20 top-5 "
-            width={16} // Set your desired width
-            height={16} // Set your desired height
-          />
-        </div>
+
+        {/* Right Arrow */}
+        <span
+          className="text-transparent text-[100px] font-extrabold mt-40 select-none"
+          style={{
+            WebkitTextStroke: "1px #12A4F5",
+            textShadow: "0 0 20px #12A4F5",
+          }}
+        >
+          {">"}
+        </span>
       </motion.div>
     </section>
   );
 };
+
 export default Display;

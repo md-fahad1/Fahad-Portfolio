@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FcDownload } from "react-icons/fc";
 
 const imgVariants = {
   initial: {
@@ -139,34 +138,7 @@ const div4 = {
     },
   },
 };
-const About = ({ file, downloadName }) => {
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    let timer;
-    if (isDownloading) {
-      timer = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 100) {
-            clearInterval(timer);
-            setIsDownloading(false);
-            setIsComplete(true);
-            return 100;
-          }
-          return prev + 1;
-        });
-      }, 20); // Adjust speed of the progress
-    }
-
-    return () => clearInterval(timer);
-  }, [isDownloading]);
-  const handleDownloadClick = () => {
-    setIsDownloading(true);
-    setProgress(0);
-    setIsComplete(false);
-  };
+const About = () => {
   return (
     <section
       className="bg-[#050816] md:px-5 px-2 min-h-screen flex flex-col justify-end"
@@ -268,82 +240,6 @@ const About = ({ file, downloadName }) => {
                 tech skills and drive innovation. Open to software development,
                 system analysis, and more.
               </p>
-              <div
-                style={{ width: "190px", margin: "0 auto" }}
-                className="mt-8 items-start"
-              >
-                <button
-                  className={`border-2 hover:bg-[#3DB0E1] mt-3 md:mt-6 mb-4 animate-glow-border flex gap-2 px-2 py-1 ${
-                    isDownloading ? "opacity-50" : ""
-                  }`}
-                  onClick={handleDownloadClick}
-                  disabled={isDownloading}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
-                  asChild
-                >
-                  <a href={file} className=" flex" download={downloadName}>
-                    {!isDownloading && <FcDownload className="mt-1" />}
-                    <span>
-                      {isDownloading ? (
-                        <div className="flex flex-row">
-                          <Image
-                            src="/download.gif"
-                            alt="download"
-                            width={20}
-                            height={20}
-                            style={{ marginRight: "10px" }}
-                          />
-                          <span>{`${progress}% Downloading...`}</span>
-                        </div>
-                      ) : (
-                        "Download CV"
-                      )}
-                    </span>
-                  </a>
-
-                  {/* <Link href="/resume">Get Resume</Link> */}
-                </button>
-                {isDownloading && (
-                  <div style={{ marginTop: "0px" }}>
-                    <div
-                      style={{
-                        width: "100%",
-                        backgroundColor: "#f3f3f3",
-                        borderRadius: "1px",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: `${progress}%`,
-                          height: "10px",
-                          backgroundColor: "#16a085",
-                          textAlign: "center",
-                          lineHeight: "2px",
-                          color: "white",
-                          borderRadius: "1px",
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-                {isComplete && (
-                  <div
-                    style={{
-                      marginTop: "10px",
-                      textAlign: "center",
-                      color: "white",
-                    }}
-                  >
-                    Download Complete!
-                  </div>
-                )}
-              </div>
             </motion.div>
           </motion.div>
         </div>

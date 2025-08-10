@@ -34,6 +34,7 @@
     "react-tilt": "^1.0.2",
     "react-typed": "^2.0.12",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.22.3",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
