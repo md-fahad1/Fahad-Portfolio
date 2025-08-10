@@ -62,6 +62,19 @@ const Display = ({ file, downloadName }) => {
     return () => clearInterval(timer);
   }, [isDownloading]);
 
+  useEffect(() => {
+    if (progress >= 100 && isDownloading) {
+      const link = document.createElement("a");
+      link.href = file || "/Fahad.pdf";
+      link.download = downloadName || "Fahad.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setIsDownloading(false);
+      setIsComplete(true);
+    }
+  }, [progress, isDownloading, file, downloadName]);
   const handleDownloadClick = () => {
     setIsDownloading(true);
     setProgress(0);
