@@ -43,6 +43,7 @@ const Display = ({ file, downloadName }) => {
   );
   const [typedText, setTypedText] = useState("");
 
+  // Download progress effect
   useEffect(() => {
     let timer;
     if (isDownloading) {
@@ -56,12 +57,13 @@ const Display = ({ file, downloadName }) => {
           }
           return prev + 1;
         });
-      }, 20); // Adjust speed here
+      }, 20);
     }
 
     return () => clearInterval(timer);
   }, [isDownloading]);
 
+  // Trigger download when progress reaches 100
   useEffect(() => {
     if (progress >= 100 && isDownloading) {
       const link = document.createElement("a");
@@ -75,18 +77,42 @@ const Display = ({ file, downloadName }) => {
       setIsComplete(true);
     }
   }, [progress, isDownloading, file, downloadName]);
+
   const handleDownloadClick = () => {
     setIsDownloading(true);
     setProgress(0);
     setIsComplete(false);
   };
 
+  // Combined typing animation & switching strings effect
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTypedText(strings[textIndex].substring(0, typedText.length + 1));
+    let typingInterval;
+    let switchTimeout;
+
+    // Typing effect
+    typingInterval = setInterval(() => {
+      setTypedText((current) => {
+        const fullText = strings[textIndex];
+        if (current.length < fullText.length) {
+          return fullText.substring(0, current.length + 1);
+        }
+        return current;
+      });
     }, 100);
-    return () => clearInterval(intervalId);
-  }, [textIndex, typedText, strings]);
+
+    // Switch text after 3.5 seconds
+    switchTimeout = setTimeout(() => {
+      setTextIndex((prev) => (prev + 1) % strings.length);
+      setTypedText("");
+    }, 3500);
+
+    return () => {
+      clearInterval(typingInterval);
+      clearTimeout(switchTimeout);
+    };
+  }, [textIndex, strings]);
+
+  // Show Swal toast on download complete
   useEffect(() => {
     if (isComplete) {
       Swal.fire({
@@ -98,48 +124,40 @@ const Display = ({ file, downloadName }) => {
         timer: 2500,
         timerProgressBar: true,
         customClass: {
-          popup: "text-xs px-3 py-2", // smaller text, smaller padding
+          popup: "text-xs px-3 py-2",
         },
       });
     }
   }, [isComplete]);
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setTextIndex((textIndex + 1) % strings.length);
-      setTypedText("");
-    }, 3500);
-    return () => clearTimeout(timeoutId);
-  }, [textIndex, strings]);
 
   return (
     <section
-      className="w-full min-h-[85vh] flex flex-col md:flex-row justify-between items-center px-6 md:px-20 bg-[#041e42] text-white"
+      className="w-full min-h-[90vh] md:min-h-[80vh] flex  flex-col-reverse md:flex-row justify-between items-center px-6 md:px-20 bg-[#041e42] text-white"
       id="home"
     >
-      {/* Left Text Content */}
+      {/* Text Content - on left for desktop */}
       <motion.div
-        className="flex flex-col justify-center max-w-xl"
+        className="flex flex-col justify-center max-w-xl mt-10 md:mt-0 mb-8 md:mb-0 md:order-1"
         variants={textVariants1}
         initial="initial"
         animate="animate"
       >
         <motion.h3
-          className="text-lg md:text-3xl flex items-center gap-2"
+          className="text-xl md:text-3xl flex items-center gap-2"
           variants={textVariants1}
         >
           <span className="text-white">Hello</span>
-          <span className="text-blue-500 text-6xl">.</span>
         </motion.h3>
 
         <motion.h1
-          className="text-3xl md:text-5xl font-medium mt-2"
+          className="text-xl md:text-5xl font-medium mt-1 md:mt-2"
           variants={textVariants1}
         >
           I&apos;m <span className="font-bold">{typedText}</span>
         </motion.h1>
 
         <motion.p
-          className="text-gray-300 mt-6 text-sm md:text-base leading-relaxed"
+          className="text-gray-300 mt-2 md:mt-6 text-sm md:text-base leading-relaxed"
           variants={textVariants2}
         >
           I love to develop user interfaces and web applications using the
@@ -201,16 +219,16 @@ const Display = ({ file, downloadName }) => {
         </motion.div>
       </motion.div>
 
-      {/* Right Image with Arrows */}
+      {/* Image with Arrows - on right for desktop, on top for mobile */}
       <motion.div
-        className="relative mt-10 md:mt-0 flex items-center"
+        className="relative h-[300px] w-[300px] md:w-[550px] md:h-[480px]  mt-1 md:mt-0 flex items-center md:order-2"
         variants={imgVariants}
         initial="initial"
         animate="animate"
       >
-        {/* Left Arrow */}
+        {/* Left Arrow - hidden on mobile */}
         <span
-          className="text-transparent text-[100px] font-extrabold mb-48 select-none"
+          className="text-transparent text-[100px] font-extrabold md:mb-48 select-none hidden md:inline-block"
           style={{
             WebkitTextStroke: "1px #12A4F5",
             textShadow: "0 0 20px #12A4F5",
@@ -220,9 +238,9 @@ const Display = ({ file, downloadName }) => {
         </span>
 
         {/* Image with Circular Border */}
-        <div className="relative">
+        <div className="relative md:w-[550px] md:h-[550px] ">
           <div
-            className="absolute top-1/2 -translate-y-1/2 left-3 w-[350px] h-[350px] rounded-full border-[18px] border-[#12A4F5]"
+            className="absolute top-1/2 -translate-y-1/2 left-3 w-[250px] h-[250px] md:w-[350px] md:h-[350px] rounded-full border-[18px] border-[#12A4F5]"
             style={{
               boxShadow: `
                 0 0 40px rgba(18, 164, 245, 0.35),
@@ -237,13 +255,13 @@ const Display = ({ file, downloadName }) => {
             alt="Profile"
             width={550}
             height={550}
-            className="rounded-lg relative z-10 object-cover mt-10"
+            className="rounded-lg relative z-10 object-cover mt-16 "
           />
         </div>
 
-        {/* Right Arrow */}
+        {/* Right Arrow - hidden on mobile */}
         <span
-          className="text-transparent text-[100px] font-extrabold mt-40 select-none"
+          className="text-transparent text-[100px] font-extrabold mt-40 select-none hidden md:inline-block"
           style={{
             WebkitTextStroke: "1px #12A4F5",
             textShadow: "0 0 20px #12A4F5",
