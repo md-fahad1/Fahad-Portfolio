@@ -141,7 +141,7 @@ const div4 = {
 const About = () => {
   return (
     <section
-      className="bg-[#050816] md:px-5 px-2 min-h-screen flex flex-col justify-end"
+      className="bg-[#050816] md:px-5 px-2 min-h-screen flex flex-col justify-end z-50"
       id="about"
     >
       <fieldset className="md:h-[80vh] text-white  md:px-6 px-2 mb-6">

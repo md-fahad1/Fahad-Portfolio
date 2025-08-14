@@ -1,25 +1,12 @@
 "use client";
 import { faBars, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FaFacebook } from "react-icons/fa";
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import navData from "../../../public/NavbarData/navData.json";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import "./Navbar.css";
-import {
-  FaInstagram,
-  FaTwitter,
-  FaDribbble,
-  FaCodepen,
-  FaDiscord,
-  FaGithub,
-  FaTelegram,
-  FaReddit,
-} from "react-icons/fa";
-import ProjectsBtn from "../ProjectBtn/ProjectBtn";
+import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const imgVariants = {
   initial: {
@@ -120,9 +107,9 @@ const Navbar = () => {
   return (
     <header
       className="text-lg sticky top-0 z-20 flex items-center 
-      bg-[#061e3d] justify-around w-full h-[70px] shadow-md border-b-2 border-gray-600 animate-glow-border border-l-0 "
+      bg-[#061e3d] justify-around w-full h-[50px] md:h-[70px] shadow-md border-b-2 border-gray-600 animate-glow-border border-l-0 "
     >
-      <div className="text-white md:ml-20 font-pacifico text-xl md:text-2xl font-bold">
+      <div className="text-white ml-0 md:ml-10 font-pacifico text-[14px] md:text-2xl font-bold">
         Fahad Portfolio
       </div>
 
@@ -181,13 +168,34 @@ const Navbar = () => {
         </ul>
       </nav>
       <div className="text-white ">
-        <div className="mt-4 z-50">
-          <ProjectsBtn className="mt-4" />
-        </div>
+        <div className="flex items-center gap-4 md:mr-10 mr-0">
+          <Link
+            href="https://github.com/mdfahad-khan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-2xl hover:text-blue-500 transition-colors"
+          >
+            <FaGithub />
+          </Link>
 
-        <span className="text-3xl absolute top-[50%] -translate-y-[50%] right-3 md:hidden block">
-          <FontAwesomeIcon icon={faBars} onClick={handleMenuOpen} />
-        </span>
+          <Link
+            href="https://www.linkedin.com/in/md-fahad-khan/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-2xl hover:text-blue-500 transition-colors"
+          >
+            <FaLinkedin />
+          </Link>
+
+          <Link
+            href="https://x.com/EvanAhmedFahad1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-2xl hover:text-blue-500 transition-colors"
+          >
+            <FaTwitter />
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -132,7 +132,7 @@ const Display = ({ file, downloadName }) => {
 
   return (
     <section
-      className="w-full min-h-[90vh] md:min-h-[80vh] flex  flex-col-reverse md:flex-row justify-between items-center px-6 md:px-20 bg-[#041e42] text-white"
+      className="w-full min-h-[60vh] md:min-h-[80vh] flex  flex-col-reverse md:flex-row justify-between items-center px-6 md:px-20 bg-[#041e42] text-white"
       id="home"
     >
       {/* Text Content - on left for desktop */}
@@ -255,7 +255,7 @@ const Display = ({ file, downloadName }) => {
             alt="Profile"
             width={550}
             height={550}
-            className="rounded-lg relative z-10 object-cover mt-16 "
+            className="rounded-lg relative z-10 object-cover mt-10  "
           />
         </div>
 

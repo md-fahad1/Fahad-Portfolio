@@ -1,18 +1,57 @@
 // projectData.js
 const projectData = [
   {
+    title: "Ceramic and Food Products E-commerce",
+    description:
+      "I developed a modern and responsive e-commerce website for a ceramic food product brand using Next.js, Tailwind CSS, and ShadCN UI. The platform features a dynamic product catalog, high-quality image displays, and an intuitive navigation system, ensuring customers can easily browse and purchase products. With a minimalist design that highlights the elegance of ceramic foodware, the site is optimized for performance, SEO, and accessibility, delivering a seamless shopping experience across all devices.",
+    languages: ["NextJs", "TailwindCSS"],
+    image: "/ceramic.png", // Make sure the image is placed correctly in public/images
+    githubLink: "",
+    liveLink: "https://ceramicandfoodproducts.com/",
+    icons: {
+      NextJs: "SiNextdotjs",
+      TailwindCSS: "SiTailwindcss",
+    },
+  },
+  {
+    title: "GreenBusket (E-commerce)",
+    description:
+      "Green Basket is a sleek and responsive e-commerce platform for buying fresh, organic produce online. Designed for simplicity and speed, it lets customers effortlessly browse, filter, and purchase high-quality farm products with secure payments. The clean interface and smooth performance make shopping for fresh goods convenient and enjoyable on any device.",
+    languages: ["NextJs", "TailwindCSS"],
+    image: "/green.png", // Make sure the image is placed correctly in public/images
+    githubLink: "",
+    liveLink: "https://green-busket.vercel.app/",
+    icons: {
+      NextJs: "SiNextdotjs",
+      TailwindCSS: "SiTailwindcss",
+    },
+  },
+  {
     title: "E-commerce Website MERN Stack",
     description:
       "Experience a robust e-commerce platform built with the MERN stack (MongoDB, Express, React, Node.js). This website features secure user authentication, role-based access, and a comprehensive admin dashboard. Sellers can manage their products and inventory seamlessly, while buyers enjoy a smooth shopping experience with advanced search and filter options. The platform also integrates payment gateways and Cloudinary for image storage, ensuring a responsive and efficient user experience.",
     languages: ["React", "Express", "NodeJs", "MongoDB"],
     image: "/project1.png", // Make sure the image is placed correctly in public/images
     githubLink: "https://github.com/mdfahad-khan/Ecommerce-MERN",
-    liveLink: "https://ecommerce-mern-lovat-xi.vercel.app/",
+    liveLink: "https://ecommerce-gadget360.vercel.app/",
     icons: {
       React: "FaReact",
       Express: "SiExpress",
       NodeJs: "FaNodeJs",
       MongoDB: "SiMongodb",
+    },
+  },
+  {
+    title: "FoodHub Food ordering website",
+    description:
+      "I developed a user-friendly restaurant food ordering platform that makes browsing the menu, selecting dishes, and placing orders simple and convenient. With a clean, responsive design, real-time order updates, and secure payment options, the website ensures a smooth and enjoyable online dining experience for customers on any device.",
+    languages: ["NextJs", "TailwindCSS"],
+    image: "/foodhub.png", // Make sure the image is placed correctly in public/images
+    githubLink: "",
+    liveLink: "https://food-hub-plum.vercel.app/",
+    icons: {
+      NextJs: "SiNextdotjs",
+      TailwindCSS: "SiTailwindcss",
     },
   },
   {
@@ -22,7 +61,7 @@ const projectData = [
     languages: ["React", "Bootstrap", "Sass", "TailwindCSS"],
     image: "/project2.png", // Make sure the image is placed correctly in public/images
     githubLink: " ",
-    liveLink: "http://139.59.79.215/",
+    liveLink: "https://shipping-website-tcmi.vercel.app/",
     icons: {
       React: "FaReact",
       Bootstrap: "FaBootstrap",
@@ -37,7 +76,7 @@ const projectData = [
     languages: ["React", "Express", "NodeJs", "MongoDB"],
     image: "/blogs.png", // Make sure the image is placed correctly in public/images
     githubLink: "https://github.com/mdfahad-khan/Fahad-Blog-Mern",
-    liveLink: "https://fahad-blogs.onrender.com/",
+    liveLink: "https://fahad-blog-npo4.onrender.com/",
     icons: {
       React: "FaReact",
       Express: "SiExpress",
@@ -52,7 +91,7 @@ const projectData = [
     languages: ["NextJs", "NestJs", "Postgresql", "TailwindCSS"],
     image: "/naturelease.png", // Make sure the image is placed correctly in public/images
     githubLink: "https://github.com/mdfahad-khan/NatureLease-Nextjs-Nestjs",
-    liveLink: "https://live-link2.com",
+    liveLink: "https://nature-lease-zeta.vercel.app/",
     icons: {
       NextJs: "SiNextdotjs",
       NestJs: "SiNestjs",
