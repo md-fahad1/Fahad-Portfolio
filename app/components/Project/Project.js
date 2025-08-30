@@ -170,7 +170,7 @@ const Project = () => {
               ref={(el) => (projectRefs.current[index] = el)}
             >
               <motion.div
-                className={`w-full h-[280px]  md:mt-10 md:w-1/2 p-5 bg-[#061E3D] rounded-md ${
+                className={`w-full md:h-[300px]  md:w-1/2 p-5 bg-[#061E3D] rounded-md ${
                   isEven ? "md:order-1" : "md:order-2"
                 }`}
                 variants={divVariants}
@@ -180,7 +180,7 @@ const Project = () => {
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full object-cover "
+                  className="w-full object-cover md:h-[260px] "
                   initial={{ opacity: 0.5 }}
                   whileHover={{ scale: 1.02, opacity: 1 }}
                   animate={{ opacity: 0.7 }}
