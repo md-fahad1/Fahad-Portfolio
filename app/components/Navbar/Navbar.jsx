@@ -170,7 +170,7 @@ const Navbar = () => {
       <div className="text-white ">
         <div className="flex items-center gap-4 md:mr-10 mr-0">
           <Link
-            href="https://github.com/mdfahad-khan"
+            href="https://github.com/md-fahad1"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white text-2xl hover:text-blue-500 transition-colors"

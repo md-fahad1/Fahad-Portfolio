@@ -16,13 +16,13 @@ const Footer = () => {
           <div className="text-center flex flex-col items-center gap-3 md:flex-row justify-between  ">
             <div className="flex gap-4 text-[28px]">
               <Link
-                href="/"
+                href="https://github.com/md-fahad1"
                 className="inline-block text-[#3db0e1] underline transition hover:text-teal-500/75"
               >
                 <FaGithub />
               </Link>
               <Link
-                href="/"
+                href="https://www.linkedin.com/in/md-fahad-khan/"
                 className="inline-block text-[#3db0e1] underline transition hover:text-teal-500/75"
               >
                 <FaLinkedin />

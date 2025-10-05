@@ -176,7 +176,7 @@ const About = () => {
                 whileInView="animate"
               >
                 <Image
-                  src="/fahad1.jpg" // Adjust the path based on your project structure
+                  src="/fahad6.jpg" // Adjust the path based on your project structure
                   alt="about"
                   className="md:ml-8 "
                   width={450} // Set your desired width
