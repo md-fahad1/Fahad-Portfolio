@@ -33,7 +33,7 @@ const projectData = [
     languages: ["React", "Express", "NodeJs", "MongoDB"],
     image: "/project1.png", // Make sure the image is placed correctly in public/images
     githubLink: "https://github.com/mdfahad-khan/Ecommerce-MERN",
-    liveLink: "https://ecommerce-gadget360.vercel.app/",
+    liveLink: "https://dream-gadget.vercel.app/",
     icons: {
       React: "FaReact",
       Express: "SiExpress",
