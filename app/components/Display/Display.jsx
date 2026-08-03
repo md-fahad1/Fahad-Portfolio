@@ -38,7 +38,7 @@ const Display = ({ file, downloadName }) => {
   const [isComplete, setIsComplete] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const strings = useMemo(
-    () => ["Youtuber", "Front-End Developer", "Freelancer"],
+    () => ["Youtuber", "Full-Stack Developer", "Freelancer"],
     []
   );
   const [typedText, setTypedText] = useState("");

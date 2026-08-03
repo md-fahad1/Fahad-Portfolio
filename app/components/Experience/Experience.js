@@ -60,7 +60,7 @@ const Experience = () => {
                   variants={zoomIn(0.3, 0.5)}
                 >
                   <p className="text-[#f41587] font-bold md:hidden text-xs ">
-                    Aug 2025 - Present
+                    Aug 2025 - June 2026
                   </p>
                   <h3 className="bg-gradient-to-r from-[#6CD7F6] via-teal-500 to-pink-500 bg-clip-text text-transparent font-semibold text-2xl">
                     Connect Auz

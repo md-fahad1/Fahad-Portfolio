@@ -225,21 +225,11 @@ const About = () => {
               className="text-white duration-100 text-justify"
             >
               <p className="text-[14px] sm:text-[13px] md:text-[14] lg:text-[16px] xl:text-[17px] 2xl:text-[23px]">
-                I am currently working as a Junior Developer, where I contribute
-                to building efficient and user-friendly applications. Before
-                this role, I gained valuable industry experience through a
-                part-time position at Pi Alpha Lab, where I worked on real-world
-                projects that enhanced my technical and problem-solving skills.
-                Prior to that, I completed my internship at Genex Infosys
-                Limited, which provided me with hands-on exposure to
-                professional software development practices. I hold a Bachelor’s
-                degree in Computer Science and Engineering from American
-                International University-Bangladesh (AIUB). My expertise
-                includes Python, HTML, CSS, JavaScript, TypeScript, Node.js,
-                Next.js, React.js, databases, and APIs. I am an
-                innovation-driven professional with strong adaptability, quick
-                learning ability, and effective collaboration skills, always
-                eager to apply my knowledge to drive impactful solutions.
+                I'm a Junior Full-Stack Developer passionate about building modern, scalable, and user-friendly web applications. I previously worked as a Junior Frontend Developer at ConnectAuz, where I developed responsive web applications using Angular and GraphQL. Before that, I worked as a Frontend Developer at PI Alpha Lab and completed my internship at Genex Infosys Limited, gaining hands-on experience in real-world software development and industry best practices.
+
+I hold a B.Sc. in Computer Science and Engineering from American International University-Bangladesh (AIUB). My technical expertise includes JavaScript, TypeScript, React.js, Next.js, Angular, Node.js, NestJS, GraphQL, Python, MongoDB, SQL, REST APIs, Tailwind CSS, Git, and GitHub.
+
+I'm currently seeking a Full-Stack Developer or Frontend Developer opportunity where I can apply my skills, contribute to meaningful projects, and continue growing as a software engineer.
               </p>
             </motion.div>
           </motion.div>
