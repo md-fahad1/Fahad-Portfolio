@@ -1,240 +1,249 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaGitAlt,
+  FaGithub,
+  FaLinkedin,
+} from "react-icons/fa";
+import {
+  SiNextdotjs,
+  SiTypescript,
+  SiJavascript,
+  SiAngular,
+  SiNestjs,
+  SiGraphql,
+  SiMongodb,
+  SiTailwindcss,
+  SiPostgresql,
+} from "react-icons/si";
+import { HiOutlineDownload, HiOutlineMail } from "react-icons/hi";
 
-const imgVariants = {
-  initial: {
-    y: 20,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
+const skills = [
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "React.js", icon: FaReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Angular", icon: SiAngular },
+  { name: "Node.js", icon: FaNodeJs },
+  { name: "NestJS", icon: SiNestjs },
+  { name: "GraphQL", icon: SiGraphql },
+  { name: "Python", icon: FaPython },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "SQL", icon: SiPostgresql },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+  { name: "Git", icon: FaGitAlt },
+];
+
+const experience = [
+  { role: "Frontend Developer", company: "ConnectAuz" },
+  { role: "Frontend Developer", company: "PI Alpha Lab" },
+  { role: "Intern", company: "Genex Infosys Limited" },
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
 };
 
-const textVariants = {
-  initial: {
-    x: -100,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
+const fadeLeft = {
+  initial: { opacity: 0, x: -40 },
+  animate: { opacity: 1, x: 0 },
 };
 
-const div1 = {
-  initial: {
-    x: -20,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
+const fadeRight = {
+  initial: { opacity: 0, x: 40 },
+  animate: { opacity: 1, x: 0 },
 };
-const div2 = {
-  initial: {
-    x: 20,
-    opacity: 0,
-  },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
-const div3 = {
-  initial: {
-    y: -20,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
-const div4 = {
-  initial: {
-    y: 20,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
-  },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
-  },
-};
+
 const About = () => {
   return (
     <section
-      className="bg-[#050816] md:px-5 px-0 min-h-screen flex flex-col justify-end z-50"
       id="about"
+      className="min-h-screen w-full px-4 sm:px-6 md:px-10 py-16 sm:py-20 flex flex-col items-center"
+      style={{
+        background:
+          "radial-gradient(circle at 50% 0%, #0a1a3d 0%, #050816 55%, #050816 100%)",
+      }}
     >
-      <fieldset className="md:h-[80vh] text-white  md:px-6 px-2 mb-6">
-        <legend className="bg-blue-500  text-center text-2xl font-bold text-white px-4 rounded-md">
-          About Me
-        </legend>
-        <div className="max-w-full  md:mx-auto 2xl:h-[60vh] sm:h-auto p-0 rounded-md shadow-lg mt-3 text-black overflow-hidden xl:flex 2xl:flex lg:flex md:flex justify-center">
-          <div
-            variants={imgVariants}
-            initial="initial"
-            whileInView="animate"
-            className="flex-shrink-0 ml-1 w-[400px] xl:w-[500px] 2xl:w-[600px] mt-2 xl:ml-6 sm:ml-32 md:ml-10 lg:ml-12 mb-3 sm:mt-8 md:h-[400px] sm:w-[350px] sm:h-[200px] overflow-hidden "
-          >
-            <div className="flex gap-10">
-              {/* <motion.div
-                variants={div1}
-                initial="initial"
-                whileInView="animate"
-                className=""
-              >
-                <Image
-                  src="/khan.jpg" // Adjust the path based on your project structure
-                  alt="about"
-                  className="md:ml-8 sm:ml-0 h-32 object-fit hover:scale-105"
-                  width={130} // Set your desired width
-                  height={130} // Set your desired height
-                />
-              </motion.div> */}
-              <motion.div
-                variants={div2}
-                initial="initial"
-                whileInView="animate"
-              >
-                <Image
-                  src="/fahad6.jpg" // Adjust the path based on your project structure
-                  alt="about"
-                  className="md:ml-8 "
-                  width={450} // Set your desired width
-                  height={550} // Set your desired height
-                />
-              </motion.div>
+      {/* Header */}
+      <motion.div
+        variants={fadeUp}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-12 sm:mb-16 max-w-xl px-2"
+      >
+        <span
+          className="inline-block text-xs tracking-widest uppercase text-blue-400 mb-3 font-semibold"
+          style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.2em" }}
+        >
+          Get to know me
+        </span>
+        <h2
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
+          About me
+        </h2>
+      </motion.div>
+
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        {/* Photo column */}
+        <motion.div
+          variants={fadeLeft}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="lg:col-span-4 flex flex-col items-center lg:items-start"
+        >
+          <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72">
+            <div
+              className="absolute inset-0 rounded-2xl"
+              style={{
+                background: "linear-gradient(135deg,#3b82f6,#22d3ee)",
+                transform: "rotate(6deg)",
+              }}
+            />
+            <div className="absolute inset-0 rounded-2xl overflow-hidden border border-blue-500/30 bg-slate-900">
+              <Image
+                src="/fahad6.jpg"
+                alt="Portrait"
+                fill
+                sizes="(max-width: 768px) 224px, 288px"
+                className="object-cover"
+              />
             </div>
-            {/* <div className="flex mt-10 gap-10">
-              <motion.div
-                variants={div3}
-                initial="initial"
-                whileInView="animate"
-              >
-                <Image
-                  src="/fahad2.jpg" // Adjust the path based on your project structure
-                  alt="about"
-                  className="md:ml-8 sm:ml-0 object-fit"
-                  width={130} // Set your desired width
-                  height={140} // Set your desired height
-                />
-              </motion.div>
-              <motion.div
-                variants={div4}
-                initial="initial"
-                whileInView="animate"
-              >
-                <Image
-                  src="/fahad3.jpg" // Adjust the path based on your project structure
-                  alt="about"
-                  className="md:ml-8 sm:ml-0 object-fit"
-                  width={200} // Set your desired width
-                  height={200} // Set your desired height
-                />
-              </motion.div>
-            </div> */}
           </div>
-          <motion.div
-            variants={textVariants}
-            initial="initial"
-            whileInView="animate"
-            className="w-[400px] ml-1 sm:w-[620px] md:w-[400px] lg:w-[550px] xl:w-[600px] 2xl:w-[800px] h-auto xl:h-[600px]  pl-2 xl:mt-2"
-          >
-            <motion.div
-              variants={textVariants}
-              whileInView="animate"
-              className="text-white duration-100 text-justify"
+
+          {/* Stats */}
+          <div className="grid grid-cols-2 gap-3 mt-8 w-full max-w-xs">
+            <div className="rounded-xl border border-blue-500/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-center">
+              <p className="text-2xl font-bold text-white">3+</p>
+              <p className="text-xs text-slate-400 mt-1">Roles held</p>
+            </div>
+            <div className="rounded-xl border border-blue-500/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-center">
+              <p className="text-2xl font-bold text-white">13+</p>
+              <p className="text-xs text-slate-400 mt-1">Technologies</p>
+            </div>
+          </div>
+
+          {/* CTAs */}
+          <div className="flex gap-3 mt-6 w-full max-w-xs">
+            <a
+              href="/resume.pdf"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-blue-500 hover:bg-blue-400 text-white text-sm font-semibold px-4 py-2.5 transition-colors"
             >
-              <p className="text-[14px] sm:text-[13px] md:text-[14] lg:text-[16px] xl:text-[17px] 2xl:text-[23px]">
-                I'm a Junior Full-Stack Developer passionate about building modern, scalable, and user-friendly web applications. I previously worked as a Junior Frontend Developer at ConnectAuz, where I developed responsive web applications using Angular and GraphQL. Before that, I worked as a Frontend Developer at PI Alpha Lab and completed my internship at Genex Infosys Limited, gaining hands-on experience in real-world software development and industry best practices.
+              <HiOutlineDownload className="text-base" />
+              Resume
+            </a>
+            <a
+              href="#contact"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-blue-500/40 hover:border-blue-400 text-blue-300 text-sm font-semibold px-4 py-2.5 transition-colors"
+            >
+              <HiOutlineMail className="text-base" />
+              Contact
+            </a>
+          </div>
 
-I hold a B.Sc. in Computer Science and Engineering from American International University-Bangladesh (AIUB). My technical expertise includes JavaScript, TypeScript, React.js, Next.js, Angular, Node.js, NestJS, GraphQL, Python, MongoDB, SQL, REST APIs, Tailwind CSS, Git, and GitHub.
+          <div className="flex gap-4 mt-6">
+            <a
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-cyan-300 transition-colors text-xl"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href="https://linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-cyan-300 transition-colors text-xl"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+          </div>
+        </motion.div>
 
-I'm currently seeking a Full-Stack Developer or Frontend Developer opportunity where I can apply my skills, contribute to meaningful projects, and continue growing as a software engineer.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </fieldset>
+        {/* Text column */}
+        <motion.div
+          variants={fadeRight}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="lg:col-span-8"
+        >
+          <h3
+            className="text-xl sm:text-2xl font-bold text-white mb-4"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Junior Full-Stack Developer
+          </h3>
+
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+            I'm passionate about building modern, scalable, and user-friendly
+            web applications. I previously worked as a Frontend Developer at{" "}
+            <span className="text-blue-400 font-medium">ConnectAuz</span>,
+            where I built responsive web applications using Angular and
+            GraphQL. Before that, I worked at{" "}
+            <span className="text-blue-400 font-medium">PI Alpha Lab</span>{" "}
+            and completed my internship at{" "}
+            <span className="text-blue-400 font-medium">
+              Genex Infosys Limited
+            </span>
+            , gaining hands-on experience in real-world software development.
+          </p>
+
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+            I hold a B.Sc. in Computer Science and Engineering from American
+            International University-Bangladesh (AIUB), and I'm currently
+            seeking a Full-Stack or Frontend Developer role where I can
+            contribute to meaningful projects and keep growing as an
+            engineer.
+          </p>
+
+          {/* Experience chips */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {experience.map((item) => (
+              <span
+                key={item.company}
+                className="text-xs px-3 py-1.5 rounded-full border border-cyan-400/30 text-cyan-300 bg-cyan-400/5"
+              >
+                {item.role} · {item.company}
+              </span>
+            ))}
+          </div>
+
+          {/* Skills */}
+          <h4 className="text-sm font-semibold text-slate-200 mb-3 uppercase tracking-wide">
+            Tech stack
+          </h4>
+          <div className="flex flex-wrap gap-2.5">
+            {skills.map(({ name, icon: Icon }) => (
+              <span
+                key={name}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm px-3 py-2 rounded-lg border border-blue-500/20 bg-white/5 text-slate-200 hover:border-blue-400/60 hover:bg-white/10 transition-colors"
+              >
+                <Icon className="text-blue-400 text-base" />
+                {name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap');
+      `}</style>
     </section>
   );
 };

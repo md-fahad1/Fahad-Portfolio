@@ -1,148 +1,184 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { FcDownload } from "react-icons/fc";
-import "./Education.css";
+import { FaGraduationCap, FaBook, FaSchool, FaCalendarAlt } from "react-icons/fa";
 
-const textVariants = {
-  initial: {
-    x: -100,
-    opacity: 0,
+const education = [
+  {
+    icon: FaGraduationCap,
+    degree: "B.Sc. in Computer Science & Engineering (CSE)",
+    school: "American International University-Bangladesh",
+    period: "2020 — 2023",
+    current: true,
   },
-  animate: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 1,
-      staggerChildren: 0.1,
-    },
+  {
+    icon: FaBook,
+    degree: "HSC — Higher Secondary Certificate",
+    school: "Shahid President Ziaur Rahman College",
+    period: "2017 — 2019",
+    current: false,
   },
-  scrollButton: {
-    opacity: 0,
-    y: 10,
-    transition: {
-      duration: 2,
-      repeat: Infinity,
-    },
+  {
+    icon: FaSchool,
+    degree: "SSC — Secondary School Certificate",
+    school: "Shantipur Adarsha High School",
+    period: "2012 — 2017",
+    current: false,
   },
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 40 },
+  animate: { opacity: 1, y: 0 },
 };
-const textVariant1 = {
-  initial: {
-    y: 100,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 2,
-      ease: "easeInOut",
-      staggerChildren: 0.1,
-    },
-  },
+
+const lineGrow = {
+  initial: { scaleY: 0 },
+  animate: { scaleY: 1 },
 };
 
 const Education = () => {
   return (
     <section
-      className="bg-[#050816]  md:px-5 px-1 min-h-[70vh]  flex flex-col justify-end"
       id="about"
+      className="min-h-screen w-full px-4 sm:px-6 md:px-8 py-14 sm:py-16 md:py-20 flex flex-col items-center overflow-hidden"
       style={{
-        // Gradient from top to bottom
         background:
-          "radial-gradient(circle at center top, #041e42 1%, #050816 50%)",
+          "radial-gradient(circle at 50% 0%, #0a1a3d 0%, #050816 55%, #050816 100%)",
       }}
     >
-      <fieldset className=" text-white mx-auto  md:px-6 px-2 md:mt-5 mt-4   mb-6">
-        <legend className="bg-blue-500 mb-6  text-center text-2xl font-bold text-white px-4 rounded-md">
+      {/* Header */}
+      <motion.div
+        variants={fadeUp}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-12 sm:mb-14 md:mb-16 max-w-xl md:max-w-2xl px-2"
+      >
+        <span
+          className="inline-block text-xs tracking-widest uppercase text-blue-400 mb-3 font-semibold"
+          style={{ fontFamily: "'JetBrains Mono', monospace", letterSpacing: "0.2em" }}
+        >
+          Academic path
+        </span>
+        <h2
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
           Education
-        </legend>
-        <div className="  content-center max-w-7xl   p-0 rounded-md shadow-lg mt-8 text-black overflow-hidden xl:flex 2xl:flex lg:flex md:flex justify-center gap-8 ">
+        </h2>
+        <p className="text-slate-400 text-xs sm:text-sm md:text-base">
+          Three stages, one thread — from secondary school to a computer
+          science degree.
+        </p>
+      </motion.div>
+
+      {/* Timeline */}
+      <div className="relative w-full max-w-3xl">
+        {/* Center connecting line (tablet & up) */}
+        <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-slate-800">
           <motion.div
-            variants={textVariants}
+            variants={lineGrow}
             initial="initial"
             whileInView="animate"
-            className=" w-[350px] sm:w-[620px] md:w-[400px] lg:w-[550px] xl:w-[600px] 2xl:w-[800px] h-auto xl:h-[600px] md:ml-[30px] pl-2 xl:mt-2"
-          >
-            <Image
-              src="/education.gif" // Adjust the path based on your project structure
-              alt="about"
-              className=" sm:ml-0 h-[420px] w-[500px] object-fit "
-              width={600} // Set your desired width
-              height={600} // Set your desired height
-            />
-          </motion.div>
-          <motion.div
-            className="w-1/2 h-full flex flex-col gap-5  md:ml-10 ml-5 mb-3 mt-5 md:mt-1"
-            variants={textVariant1}
-            initial="initial"
-            whileInView="animate"
-          >
-            <div class="card1 px-2 md:px-0 w-[300px] ml-5 md:ml-0 md:w-[500px] h-[60px] md:h-[125px] animate-glow-border hover:ml-5 md:hover:ml-0">
-              <div class="border"></div>
-              <div class="content1 ">
-                <div class="logo w-[300px] md:w-[400px] md:hover:w-[400px] ">
-                  <div class="logo1 w-[300px] md:w-[400px] md:text-[40px] text-[20px]">
-                    <div className="text-[12px]  md:text-[18px] font-bold text-white ">
-                      B.Sc. in Computer Science & Engineering (CSE)
-                    </div>
-                  </div>
-
-                  <span class="trail md:w-[200px] w-[100px]"></span>
-                </div>
-                <span class="logo-bottom-text  md:w-[400px] md:text-[16px] text-[11px] font-bold w-[250px] md:ml-[10px] ml-0 ">
-                  American International University-Bangladesh
-                </span>
-              </div>
-              <span class="bottom-text  md:text-2xl md:hover:text-[20px] text-[10px] ">
-                2020-2023
-              </span>
-            </div>
-
-            <div class="card1 px-2 hover:text-center md:px-0 w-[300px] ml-5 md:ml-0 md:w-[500px] h-[60px] md:h-[125px] animate-glow-border hover:ml-5 md:hover:ml-0">
-              <div class="border"></div>
-              <div class="content1 ">
-                <div class="logo w-[300px] md:w-[400px] md:hover:w-[400px] ">
-                  <div class="logo1 w-[300px] md:w-[400px] md:text-[40px] text-[20px]">
-                    <div className="text-[12px] mr-16 hover:mr-0  md:text-[18px] font-bold text-white transition-all duration-200 ">
-                      HSC - Higher Secondary Certificate
-                    </div>
-                  </div>
-
-                  <span class="trail md:w-[200px] w-[100px]"></span>
-                </div>
-                <span class="logo-bottom-text text-center  md:w-[400px] md:text-[16px] text-[11px] font-bold w-[250px] md:ml-[10px] ml-0 ">
-                  Shahid Presedent Ziaur Rahman Collage
-                </span>
-              </div>
-              <span class="bottom-text  md:text-2xl md:hover:text-[20px] text-[10px] ">
-                2017-2019
-              </span>
-            </div>
-            <div class="card1 px-2 hover:text-center md:px-0 w-[300px] ml-5 md:ml-0 md:w-[500px] h-[60px] md:h-[125px] animate-glow-border hover:ml-5 md:hover:ml-0">
-              <div class="border"></div>
-              <div class="content1">
-                <div class="logo w-[300px] md:w-[400px] md:hover:w-[400px] ">
-                  <div class="logo1 w-[300px] md:w-[400px] md:text-[40px] text-[20px]">
-                    <div className="text-[12px]  mr-16 hover:mr-0   md:text-[19px] font-bold text-white ">
-                      SSC - Secondary School Certificate
-                    </div>
-                  </div>
-
-                  <span class="trail md:w-[200px] w-[100px]"></span>
-                </div>
-                <span class="logo-bottom-text   md:w-[400px] md:text-[16px] text-[11px] font-bold w-[250px] md:ml-[10px]  ">
-                  Shantipur Adarsha High School
-                </span>
-              </div>
-              <span class="bottom-text  md:text-2xl md:hover:text-[20px] text-[10px] ">
-                2012-2017
-              </span>
-            </div>
-          </motion.div>
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            style={{
+              transformOrigin: "top",
+              background: "linear-gradient(180deg,#3b82f6,#22d3ee)",
+            }}
+            className="w-full h-full"
+          />
         </div>
-      </fieldset>
+
+        {/* Left connecting line (mobile only) */}
+        <div className="sm:hidden absolute left-5 top-0 bottom-0 w-px bg-slate-800">
+          <motion.div
+            variants={lineGrow}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            transition={{ duration: 1.4, ease: "easeInOut" }}
+            style={{
+              transformOrigin: "top",
+              background: "linear-gradient(180deg,#3b82f6,#22d3ee)",
+            }}
+            className="w-full h-full"
+          />
+        </div>
+
+        <div className="flex flex-col gap-10 sm:gap-12 md:gap-16">
+          {education.map((item, i) => {
+            const Icon = item.icon;
+            const alignRight = i % 2 === 1;
+            return (
+              <motion.div
+                key={item.degree}
+                variants={fadeUp}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className={`relative flex items-start sm:items-center gap-4 sm:gap-0 ${
+                  alignRight ? "sm:flex-row-reverse" : "sm:flex-row"
+                }`}
+              >
+                {/* Node */}
+                <div className="relative z-10 shrink-0 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+                  <div
+                    className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center border-2 ${
+                      item.current
+                        ? "border-cyan-400 bg-cyan-400/10"
+                        : "border-blue-500 bg-blue-500/10"
+                    }`}
+                  >
+                    <Icon
+                      className={`text-sm sm:text-base ${
+                        item.current ? "text-cyan-300" : "text-blue-400"
+                      }`}
+                    />
+                  </div>
+                  {item.current && (
+                    <span className="absolute inset-0 rounded-full border-2 border-cyan-400 animate-ping opacity-40" />
+                  )}
+                </div>
+
+                {/* Card */}
+                <div
+                  className={`group flex-1 w-full sm:w-5/12 rounded-xl border border-blue-500/20 bg-white/5 backdrop-blur-sm px-4 sm:px-5 py-4 transition-all duration-300 hover:border-blue-400/60 hover:bg-white/10 hover:-translate-y-1 ${
+                    alignRight ? "sm:mr-auto sm:text-right" : "sm:ml-auto"
+                  }`}
+                >
+                  <h3
+                    className="text-white font-bold text-sm sm:text-sm md:text-base mb-1 leading-snug"
+                    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                  >
+                    {item.degree}
+                  </h3>
+                  <p className="text-slate-400 text-xs sm:text-xs md:text-sm mb-3">
+                    {item.school}
+                  </p>
+                  <div
+                    className={`inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border ${
+                      item.current
+                        ? "border-cyan-400/40 text-cyan-300 bg-cyan-400/10"
+                        : "border-blue-500/30 text-blue-300 bg-blue-500/10"
+                    }`}
+                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                  >
+                    <FaCalendarAlt className="text-xs" />
+                    {item.period}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=swap');
+      `}</style>
     </section>
   );
 };

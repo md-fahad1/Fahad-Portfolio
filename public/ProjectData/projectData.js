@@ -76,7 +76,7 @@ const projectData = [
     languages: ["React", "Express", "NodeJs", "MongoDB"],
     image: "/blogs.png", // Make sure the image is placed correctly in public/images
     githubLink: "https://github.com/mdfahad-khan/Fahad-Blog-Mern",
-    liveLink: "https://fahad-blog-npo4.onrender.com/",
+    liveLink: "https://fahad-blog1.vercel.app/",
     icons: {
       React: "FaReact",
       Express: "SiExpress",
