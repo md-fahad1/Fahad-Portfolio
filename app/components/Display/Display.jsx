@@ -199,7 +199,7 @@ const Display = ({ file, downloadName }) => {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] font-bold text-white mt-1 leading-[1.1]"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Fahad Khan
+           Md Fahad Khan
           </motion.h1>
 
           <motion.div
@@ -380,7 +380,7 @@ const Display = ({ file, downloadName }) => {
               className="absolute -left-4 sm:-left-6 top-6 rounded-xl border border-blue-500/25 bg-[#0c1732]/95 backdrop-blur-sm px-3.5 py-2.5 shadow-xl"
             >
               <p className="text-[10px] text-slate-400" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                Currently building
+                Working
               </p>
               <p className="text-xs sm:text-sm font-semibold text-white mt-0.5">
                 RMS
