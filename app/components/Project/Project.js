@@ -23,6 +23,8 @@ import {
   SiMysql,
   SiCsharp,
   SiOracle,
+  SiGraphql,
+  SiPrisma
 } from "react-icons/si";
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -34,6 +36,7 @@ const iconComponents = {
   FaHtml5: FaHtml5,
   FaCss3Alt: FaCss3Alt,
   FaNodeJs: FaNodeJs,
+
   SiExpress: SiExpress,
   SiMongodb: SiMongodb,
   SiNextdotjs: SiNextdotjs,
@@ -42,12 +45,15 @@ const iconComponents = {
   SiTailwindcss: SiTailwindcss,
   SiDotnet: SiDotnet,
   SiMysql: SiMysql,
-  FaBootstrap: FaBootstrap,
-  FaSass: FaSass,
-
   SiCsharp: SiCsharp,
   SiOracle: SiOracle,
-  // Add more icons as needed
+
+  // New
+  SiGraphql: SiGraphql,
+  SiPrisma: SiPrisma,
+
+  FaBootstrap: FaBootstrap,
+  FaSass: FaSass,
 };
 const divVariants = {
   initial: {
