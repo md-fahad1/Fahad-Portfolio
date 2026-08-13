@@ -103,7 +103,10 @@ const Navbar = () => {
         top: section.offsetTop - 80,
       });
     }
+    // close the mobile menu after a link is clicked
+    setIsactive(false);
   };
+
   return (
     <header
       className="text-lg sticky top-0 z-20 flex items-center 
@@ -112,6 +115,9 @@ const Navbar = () => {
       <div className="text-white ml-0 md:ml-10 font-pacifico text-[14px] md:text-2xl font-bold">
         Fahad Portfolio
       </div>
+
+      {/* Hamburger button - mobile only, opens the menu */}
+      
 
       <nav
         className={`h-screen md:h-full grid place-items-center text-[#ccd6f6] text-xl fixed  top-0 ${
@@ -195,6 +201,9 @@ const Navbar = () => {
           >
             <FaTwitter />
           </Link>
+          <div className="md:hidden block text-white text-2xl cursor-pointer z-50">
+        <FontAwesomeIcon icon={faBars} onClick={handleMenuOpen} />
+      </div>
         </div>
       </div>
     </header>
